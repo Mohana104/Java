@@ -1,0 +1,36 @@
+class BankAccount {
+    String name;
+    int accno, currbal;
+
+    // Constructor with correct name
+    BankAccount(String name, int accno, int currbal) {
+        this.name = name;
+        this.accno = accno;
+        this.currbal = currbal;
+        System.out.println("The customer details are: " + this.name + " " + this.accno + " " + this.currbal);
+    }
+
+    // Withdraw method
+    public void withdraw(int wamount) {
+        if (wamount < currbal) {
+            currbal = currbal - wamount;
+            System.out.println("Remaining balance: " + currbal);
+        } else {
+            System.out.println("Insufficient funds");
+        }
+    } // <-- Added missing closing brace
+
+    // Deposit method
+    public int deposit(int damount) {
+        currbal = currbal + damount;
+        return currbal;
+    }
+
+    public static void main(String[] args) {
+        BankAccount honey = new BankAccount("riya", 2345, 10000);
+        honey.withdraw(15000); // Should print "Insufficient funds"
+        honey.withdraw(5000);  // Should print remaining balance
+        honey.deposit(5001);
+        System.out.println(honey.deposit(5001)); // Prints updated balance
+    }
+}
